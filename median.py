@@ -24,11 +24,11 @@ for i in range(1,image_bordered.shape[0]-x):
         p=0
         for k in range(i-x,i+x+1):
             for l in range(j-x,j+x+1):
-                temp[p]=image_bordered[k][l]
+                temp[p]=image_bordered[k,l]
                 p+=1
                 temp2=np.sort(temp)
-                out[i][j]=temp2[round((size*size)/2)]
-o=out[1:-1][1:-1]                
+                out[i,j]=temp2[round((size*size)/2)]
+o=out[1:-1,1:-1]                
 cv2.imshow("image",o)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

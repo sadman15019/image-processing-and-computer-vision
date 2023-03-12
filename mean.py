@@ -22,9 +22,9 @@ for i in range(1,image_bordered.shape[0]-x):
         s=0
         for k in range(i-x,i+x+1):
             for l in range(j-x,j+x+1):
-                s+=image_bordered[k][l]
-                out[i][j]=round(s/(size*size))
-o=out[1:-1][1:-1]                
+                s+=image_bordered[k,l]
+                out[i,j]=round(s/(size*size))
+o=out[1:-1,1:-1]                
 cv2.imshow("image",o)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
