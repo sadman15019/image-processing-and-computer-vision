@@ -64,8 +64,11 @@ plt.imshow(out,'gray')
 plt.title("Output for gaussian blurr "+str(sigma) )
 plt.show()
 
+
 o=cv2.normalize(out,None, 0, 1, cv2.NORM_MINMAX)
-#o=out[x-1:-x-4,y-1:-y-4]              
+o=o[x:-x,y:-y]  
+print(o)            
+cv2.imshow("input",img)
 cv2.imshow("image",o)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

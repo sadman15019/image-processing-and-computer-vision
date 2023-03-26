@@ -10,6 +10,7 @@ size=int(input("Enter kernel size\n"))
 
 
 x=size//2
+y=size//2
 temp= np.zeros(size*size, dtype=np.uint8)
 temp2= np.zeros(size*size, dtype=np.uint8)
 image_bordered = cv2.copyMakeBorder(src=img, top=x, bottom=x, left=x, right=x,borderType= cv2.BORDER_CONSTANT)#BORDER_WRAP, cv.BORDER_REFLECT 
@@ -19,16 +20,17 @@ o = np.zeros((img.shape[0],img.shape[0]), dtype=np.uint8)
 #print(img.shape)
 #print(image_bordered.shape)
 
-for i in range(1,image_bordered.shape[0]-x):
-    for j in range(1,image_bordered.shape[1]-x):
+for i in range(x,image_bordered.shape[0]-x):
+    for j in range(y,image_bordered.shape[1]-y):
         p=0
         for k in range(i-x,i+x+1):
-            for l in range(j-x,j+x+1):
+            for l in range(j-y,j+y+1):
                 temp[p]=image_bordered[k,l]
                 p+=1
                 temp2=np.sort(temp)
                 out[i,j]=temp2[round((size*size)/2)]
-o=out[1:-1,1:-1]                
+o=out[1:-1,1:-1]   
+cv2.imshow("input",img)             
 cv2.imshow("image",o)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

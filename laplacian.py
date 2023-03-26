@@ -51,7 +51,8 @@ for i in range(x,image_bordered.shape[0]-x):
         
 
 final=cv2.normalize(out,None, 0, 1, cv2.NORM_MINMAX)
-cv2.imshow("image",final)
+cv2.imshow("input",img)
+cv2.imshow("image",out)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 

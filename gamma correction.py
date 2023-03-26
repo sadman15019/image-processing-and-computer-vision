@@ -18,7 +18,7 @@ for i in range(0,img.shape[0]):
     for j in  range (0,img.shape[1]):
         output[i,j]=round(c*((img[i,j]/255)**gamma))
 
-       
+cv2.imshow("input",img)       
 cv2.imshow("output",output)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
