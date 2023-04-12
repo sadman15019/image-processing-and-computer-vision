@@ -39,7 +39,6 @@ def main():
     x=k_h//2
     y=k_w//2
 
-    #img=cv2.copyMakeBorder(img,top=x,bottom=x,left=y,right=y,borderType= cv2.BORDER_CONSTANT)
     fil=cv2.copyMakeBorder(kernel,top=out_h-k_h,bottom=0,left=0,right=out_w-k_w,borderType= cv2.BORDER_CONSTANT)#only up and right padding 
 
         
@@ -86,17 +85,23 @@ def main():
            output_image[j,:] = result_vector[start:end] #image er ulta dik theke,result er shurur dik theke
            j-=1
     output_image/=255
+  
 
 
     cv2.imshow("input",img)
     cv2.imshow("image",output_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()    
-
-
+    '''
     plt.imshow(output_image,'gray')
     plt.title("Output for laplacian " )
     plt.show()
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()    
+    '''
+
+
+  
 if __name__=="__main__":
     main()
         
