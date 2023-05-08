@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-img=cv2.imread("histogram.jpg",cv2.IMREAD_GRAYSCALE)
+img=cv2.imread("eye.png",cv2.IMREAD_GRAYSCALE)
 i = cv2.equalizeHist(img)
 cv2.imshow("j",i)
 
@@ -29,6 +29,8 @@ for i in range(256):
 cdf[0]=pdf[0]
 for i in range(1,256):
     cdf[i]=cdf[i-1]+pdf[i]
+    
+print(cdf[255])
 
 
 
@@ -42,6 +44,10 @@ for i in range(256):
 for i in range(img.shape[0]):
     for j in range(img.shape[1]):
         out[i,j]=int(round(cdf[img[i,j]]))
+    
+histr = cv2.calcHist([out],[0],None,[256],[0,256])
+plt.plot(histr)
+
 
 out=out/255
 
@@ -67,10 +73,9 @@ for i in range(1,256):
     
 for i in range(256):
     cdf_out[i]=round(cdf_out[i]*255.0)
-print("asdasd")
 
 
-'''
+
 plt.figure(figsize=(10, 4))
 
 
@@ -83,6 +88,7 @@ plt.title("output Image Histogram")
 plt.hist(out.ravel(),256,[0,255])
 
 
+'''
 plt.subplot(1, 2, 1)
 plt.title("Input cdf")
 plt.plot(cdf)
@@ -91,7 +97,7 @@ plt.subplot(1, 2, 2)
 plt.title("output cdf")
 plt.plot(cdf_out)
 plt.show()
-
+'''
 
 
         
@@ -100,7 +106,7 @@ plt.show()
 #plt.figure(figsize=(10, 4))
 
 #plt.subplot(1, 2, 1)
-'''
+
         
 
         
