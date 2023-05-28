@@ -17,13 +17,13 @@ sigma=float(input("Enter the value of sigma\n"))
 
 cons=2*sigma*sigma
 pi=(22/7)
-k_h=int(sigma*5)
-k_w=int(sigma*5)
+k_h=5
+k_w=5
 
 x=k_h//2
 y=k_w//2
 
-img=cv2.imread('bilateral.png',cv2.IMREAD_GRAYSCALE)
+img=cv2.imread('Lena.jpg',cv2.IMREAD_GRAYSCALE)
 image_bordered = cv2.copyMakeBorder(src=img, top=x, bottom=x, left=y, right=y,borderType= cv2.BORDER_CONSTANT)#BORDER_WRAP, cv.BORDER_REFLECT 
 out = np.zeros((image_bordered.shape[0],image_bordered.shape[1]), dtype=np.float32)
 

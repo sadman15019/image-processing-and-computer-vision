@@ -47,10 +47,16 @@ for i in range(x,image_bordered.shape[0]-x):
         if(s<0):
             s=0
         out[i,j]=s
-        
-        
 
-final=cv2.normalize(out,None, 0, 1, cv2.NORM_MINMAX)
+cnt=0
+for i in range(x,image_bordered.shape[0]-x):
+    for j in range(y,image_bordered.shape[1]-y):
+        if(out[i,j]<0):
+            cnt+=1
+print(cnt)
+out=out[1:-1,1:-1]
+out+=img
+out/=255
 cv2.imshow("input",img)
 cv2.imshow("image",out)
 cv2.waitKey(0)

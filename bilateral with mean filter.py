@@ -8,7 +8,7 @@ sigma=float(input("Enter the value of gaussian sigma\n"))
 
 cons=2*sigma*sigma
 
-size=round(sigma*5)
+size=5
 if(size%2==0):
     size+=1
     
@@ -47,11 +47,9 @@ for i in range (x,img.shape[0]-x):
                 s+= kernel[a+x,b+y]*img[i-a,j-b]
             s/=ksum
         out[i,j]=round(s)
-        out[i,j]/=255
-#cv2.imshow("gausian output",out) 
-plt.imshow(out,'gray')
-plt.title("Output for gaussian blurr "+str(sigma) )
-plt.show()
+
+out/=255
+
 
 o=cv2.normalize(out,None, 0, 1, cv2.NORM_MINMAX)
 #o=out[x-1:-x-4,y-1:-y-4]              

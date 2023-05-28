@@ -2,6 +2,7 @@ import cv2
 import matplotlib.pyplot as plt
 import math
 import numpy as np
+import scipy.stats as stats 
 
 
 img=cv2.imread("eye.png",cv2.IMREAD_GRAYSCALE)
@@ -53,6 +54,12 @@ for i in range(0,256):
     pdf_erlang[i]=(math.pow(lamda,k)*math.pow(i,k-1))
     pdf_erlang[i]*=np.exp(-lamda*i)
     pdf_erlang[i]/=math.factorial(k-1)
+
+print(pdf_erlang)
+    
+plt.title("erlang")
+plt.plot(pdf_erlang)  
+
     
 
 
@@ -82,7 +89,7 @@ for i in range(img.shape[0]):
     for j in range(img.shape[1]):
         out[i,j]=int(tmp[img[i,j]])
         
-
+'''
 histr = cv2.calcHist([out],[0],None,[256],[0,256])
 plt.plot(histr)
 
@@ -104,6 +111,7 @@ plt.title("output Image Histogram")
 plt.plot(histr)  
 
 #plt.hist(cdf_erlang.ravel(),256,[0,255])
+'''
 
 
     
