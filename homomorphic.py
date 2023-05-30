@@ -19,14 +19,45 @@ def min_max_normalize(img_inp):
 
 # take input
 
-img_input = cv2.imread('homo.jpg', 0)
+img_input = cv2.imread('Lena.jpg', 0)
 
 img = dpc(img_input)
 
 image_size = img.shape[0] * img.shape[1]
 
+angle=45
+gh = 1.2
+gl = 0.5
+c = 0.1
+d0 = 50
+
+angle = np.deg2rad(angle)
+
+x = np.linspace(0,1,img.shape[1])
+y = np.linspace(0,1,img.shape[0])
+xx, yy = np.meshgrid(x, y)
+
+
+grad_dir = np.array([np.cos(angle), np.sin(angle)])
+
+
+illum_pattern = grad_dir[0] * xx + grad_dir[1] * yy
+
+
+illum_pattern -= illum_pattern.min()
+illum_pattern /= illum_pattern.max()
+
+
+
+corrupt_img = np.multiply(img, illum_pattern)
+
+corrupt_img/=255
+
+cv2.imshow("corrupt", corrupt_img)
+
+
 # fourier transform
-ft = np.fft.fft2(img)
+ft = np.fft.fft2(corrupt_img)
 
 ft_shift = np.fft.fftshift(ft)
 
@@ -46,10 +77,7 @@ ang = np.angle(ft_shift)
 
 filt = np.zeros((img.shape[0],img.shape[1]), np.float32)
 
-gh = 1.5
-gl = 0.6
-c = 0.05
-d0 = 50
+
 
 for i in range(img.shape[0]):
     for j in range(img.shape[1]):
@@ -77,6 +105,8 @@ img_back_scaled = min_max_normalize(img_back)
 ## plot
 
 cv2.imshow("inputtt", img_input)
+
+cv2.imshow("ill_pat", illum_pattern)
 cv2.imshow("Magnitude Spectrummmm",magnitude_spectrum_scaled)
 
 cv2.imshow("Phaseee",ang)
