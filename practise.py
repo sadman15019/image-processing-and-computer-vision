@@ -1,11 +1,12 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Mar 12 22:17:31 2023
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
 
-@author: Asus
-"""
+img=cv2.imread("eye.png",cv2.IMREAD_GRAYSCALE)
 
-a=5
-b=3
-x=round(a/b)
-print(x)
+
+plt.hist(img.ravel(),256,[0,255])
+
+plt.show()
+
+cv2.waitKey(0)

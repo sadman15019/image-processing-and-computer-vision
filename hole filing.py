@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.use('TkAgg')
+#matplotlib.use('TkAgg')
 
 
 point_list=[]
@@ -44,8 +44,8 @@ comp=cv2.bitwise_not(img)
 img2=np.zeros((img.shape[0],img.shape[1]),dtype=np.uint8)
 
 
-xx=point_list[0][0]
-yy=point_list[0][1]
+xx=point_list[0][1]
+yy=point_list[0][0]
 img2[xx,yy]=255
 
 tmp=img2
@@ -64,5 +64,6 @@ cv2.imshow("click",img2)
 cv2.imshow("outtt",out)
 
 cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 

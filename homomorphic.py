@@ -26,7 +26,7 @@ img = dpc(img_input)
 image_size = img.shape[0] * img.shape[1]
 
 angle=45
-gh = 1.2
+gh = 1.3
 gl = 0.5
 c = 0.1
 d0 = 50
@@ -35,7 +35,12 @@ angle = np.deg2rad(angle)
 
 x = np.linspace(0,1,img.shape[1])
 y = np.linspace(0,1,img.shape[0])
+
+
 xx, yy = np.meshgrid(x, y)
+
+print(xx)
+print(yy)
 
 
 grad_dir = np.array([np.cos(angle), np.sin(angle)])
@@ -55,7 +60,7 @@ corrupt_img/=255
 
 cv2.imshow("corrupt", corrupt_img)
 
-
+corrupt_img = np.log1p(corrupt_img)
 # fourier transform
 ft = np.fft.fft2(corrupt_img)
 
@@ -99,7 +104,11 @@ final_result = np.multiply(temp, np.exp(1j*ang))
 
 # inverse fourier
 img_back = np.real(np.fft.ifft2(np.fft.ifftshift(final_result)))
+
+img_back=np.expm1(img_back)
 img_back_scaled = min_max_normalize(img_back)
+
+
 
 
 ## plot
